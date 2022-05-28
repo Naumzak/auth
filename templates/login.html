@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="loginu" method="post">
+    {% csrf_token %}
+    <label for="id_username">Login:</label>
+    <input id="id_username" type="text" name="username">
+    <p>
+    <label for="id_password">Password:</label>
+    <input id="id_password" type="password" name="password">
+    <input type="submit" value="submit">
+</form>
+
+</body>
+</html>
