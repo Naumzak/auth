@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form action="logout" method="post">
+<form action="/item/{{ product.id }}/" method="post">
     {% csrf_token %}
-    <input type="submit" value="logout">
+    <button type="submit" value="submit">Add to basket</button>
 </form>
 
 </body>
