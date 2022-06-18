@@ -1,10 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <main class="main--wrapper">
+
+        <!-- shop area start -->
+        <div class="product shop-page pt-80 pb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row border-b no-gutters">
+                            <div class="col-lg-5 col-md-4">
+                                <div class="shop-bar d-flex align-items-center">
+                                    <h4 class="f-800 cod__black-color">Shop</h4>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Shop.</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-8">
+                                <div class="bar-wrapper">
+                                    <div class="select-text">
+                                        <span>Showing 1–11 of 23 Results</span>
+                                    </div>
+                                    <div class="shop-select">
+                                        <select name="select" id="shop-select-one">
+                                            <option value="1">Deafult Sorting</option>
+                                            <option value="2">Deafult Sorting</option>
+                                            <option value="3">Deafult Sorting</option>
+                                            <option value="4">Deafult Sorting</option>
+                                        </select>
+                                    </div>
+                                    <div class="shop-select">
+                                        <select name="select" id="shop-select-two">
+                                            <option value="1">Categories</option>
+                                            <option value="2">Categories 01</option>
+                                            <option value="3">Categories 02</option>
+                                            <option value="4">Categories 03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-30">
+                            <div class="col-sm-12">
+                                <div class="row">
+                    {% for item in products %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product__single mb-30">
+                            <div class="product__box featured__box--item">
+                                <div class="product__thumb">
+                                    <a href="/item/{{ item.UniqId}}"><img class="img" src="{{ item.Image}}" alt=""  width="450" height="110"></a>
+                                </div>
+                                <div class="product--flex__right">
+                                    <div class="product__content--top">
+                                        <h6 class="product__title mine__shaft-color f-700 mb-30"><a href="/item/{{ item.UniqId}}">{{ item.ProductName }}</a></h6>
+                                    </div>
+                                    <div class="product__content--rating d-flex justify-content-between">
+                                        <div class="rating">
+                                            <ul class="list-inline">
+                                                <li class="rating-active"><i class="fas fa-star"></i></li>
+                                                <li class="rating-active"><i class="fas fa-star"></i></li>
+                                                <li class="rating-active"><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="price">
+                                            <h5 class="grenadier-color f-600">{{item.Price}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="new">NEW</span>
+                                <span class="sale">SALE</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                    <div class="col-sm-12">
+                        <div class="common-pagination mt-10">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="1"><i class="fas fa-angle-left"></i> Prev</a></li>
+                                    {% for i in page_num %}
+                                    <li class="page-item"><a class="page-link" href="{{ i }}?{{ queryparams }}">{{ i }}</a></li>
+                                    {% endfor %}
+                                    <li class="page-item"><a class="page-link" href="#">Next <i class="fas fa-angle-right"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="common-sidebar shop-banner-sidebar shop-right-sidebar">
+                            <div class="common-cat">
+                                <div class="side-title">
+                                    <h6>Categories</h6>
+                                </div>
+                                        <select name="search_in_category" id="header--search__main">
+                                            <option value="All">All Categories</option>
+                                            {% for category in all_categories.category %}
+                                            <option value="{{ category }}">{{ category}}</option>
+                                            {% endfor %}
+                                        </select>
+                            </div>
+                            <div class="slider-range mt-50">
+                                <div class="side-title mb-30">
+                                    <h6>Filter By Price</h6>
+                                </div>
+                                <div id="slider-range"></div>
+                                <p>
+                                    <label for="amount">Price :</label>
+                                    <input type="text" id="amount" readonly>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop area end -->
+
+        <!-- Subscribe -->
+        <div class="subscribe subscribe--area grenadier-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="newsletter newsletter--box d-flex justify-content-between align-items-center pos-rel">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <div class="newsletter__title">
+                                    <span class="notification--icon"><img src="img/icon/notification-icon.png" alt="notification"></span>
+                                    <span class="notification__title--heading f-800 white-color">Subscribe for Join Us!</span>
+                                </div>
+                                <div class="newsletter--message d-none d-xl-block">
+                                    <p class="newsletter__message__title mb-0">.... & receive $20 coupne for first Shopping &
+                                        free delivery.</p>
+                                </div>
+                            </div>
+                            <form class="right newsletter--form pos-rel">
+                                <input class="newsletter--input" type="text" placeholder="Enter Your Email Address ...">
+                                <button class="btn newsletter--button" type="button"><img src="img/icon/plan-icon.png" alt=""></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Subscribe End -->
+
+    </main>
+    <!-- Main End -->
+{% endblock %}

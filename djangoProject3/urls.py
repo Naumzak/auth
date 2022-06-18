@@ -23,9 +23,9 @@ urlpatterns = [
     path('login', t_a_views.login_users),
     path('user_admin', t_a_views.login_users),
     path('item/<str:item_id>/', t_a_views.item),
-    path('category/<str:category_name>/', t_a_views.category),
+    path('category/<str:category_name>/<int:page_num>', t_a_views.category),
     path('basket', t_a_views.basket),
-    path('search', t_a_views.logout_users),
+    path('search/<int:page_num>', t_a_views.search),
     path('complete_purchase/', t_a_views.complete_purchase),
     path('logout', t_a_views.logout_users),
 

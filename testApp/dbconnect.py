@@ -13,11 +13,8 @@ def get_data(collection_name, params=None, all=False):
     collection = db[collection_name]
     if not all:
         res = collection.find_one(params)
-        res['id'] = res['_id']
     elif all:
         res = list(collection.find(params))
-        for i in res:
-            i["id"] = i["_id"]
     else:
         raise ValueError("incorrect value")
     return res
@@ -28,7 +25,3 @@ def write_data(collection_name, data):
     collection = db[collection_name]
     collection.insert_one(data)
     cl.close()
-
-
-t = get_data('products', params={"_id": ObjectId('62a2fe743741a7075625e227')})
-print(t)
