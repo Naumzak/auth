@@ -8,6 +8,7 @@ import testApp.my_funcs as my_funcs
 import re
 import testApp.made_basket as made_basket
 
+
 def main_page(request):
     if request.method == 'GET':
         total_price = made_basket.total_price(request)
@@ -48,15 +49,15 @@ def category(request, category_name, page_num):
         res = dbconnect.get_data("products", params={"Category": rgx}, all=True)
         all_categories = dbconnect.get_data('info', params={'name': 'category'})
         total_price = made_basket.total_price(request)
-        object_in_page = 18
+        object_on_page = 18
         try:
-            product_on_page = res[page_num*object_in_page-object_in_page: page_num*object_in_page]
+            product_on_page = res[page_num * object_on_page - object_on_page: page_num * object_on_page]
         except:
-            product_on_page = res[page_num * object_in_page - object_in_page:]
+            product_on_page = res[page_num * object_on_page - object_on_page:]
         if page_num < 3:
             list_page_num = [1, 2, 3, 4, 5]
         else:
-            list_page_num = [page_num -2, page_num - 1, page_num, page_num + 1, page_num +2]
+            list_page_num = [page_num - 2, page_num - 1, page_num, page_num + 1, page_num + 2]
         return render(request, 'category.html', {
             "category": category_name,
             "products": product_on_page,
@@ -77,7 +78,7 @@ def item(request, item_id):
             specification = my_funcs.list_to_dict(details)
             minidescription = my_funcs.upadate_minidescription(product['TechnicalDetails'])
         except:
-            specification, minidescription ='', ''
+            specification, minidescription = '', ''
         return render(request, 'item.html', {
             "product": product,
             'specification': specification,
@@ -112,18 +113,18 @@ def search(request, page_num):
         rgx_for_name = re.compile(f'.*{keyword}.*', re.IGNORECASE)
         res = dbconnect.get_data("products", params={
             "Category": rgx_for_category,
-            "ProductName":rgx_for_name,
-            "&and":[{'Price': {'$gt': int(min_price)}}, {'Price': {'$lt': int(max_price)}}]},
+            "ProductName": rgx_for_name,
+            "&and": [{'Price': {'$gt': int(min_price)}}, {'Price': {'$lt': int(max_price)}}]},
                                  all=True)
         all_categories = dbconnect.get_data('info', params={'name': 'category'})
         try:
-            product_on_page = res[page_num*9-9: page_num*9]
+            product_on_page = res[page_num * 9 - 9: page_num * 9]
         except:
             product_on_page = res[page_num * 9 - 9:]
         if page_num < 3:
             list_page_num = [1, 2, 3, 4, 5]
         else:
-            list_page_num = [page_num -2, page_num - 1, page_num, page_num + 1, page_num +2]
+            list_page_num = [page_num - 2, page_num - 1, page_num, page_num + 1, page_num + 2]
         return render(request, 'category.html', {
             "category": category_name,
             "products": product_on_page,
@@ -131,7 +132,6 @@ def search(request, page_num):
             'all_categories': all_categories,
             'total_price': total_price
         })
-
 
 
 def contacts(request):
